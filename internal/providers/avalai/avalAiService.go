@@ -23,6 +23,7 @@ func GenerateInterviewQuestions(
 	includeCV,
 	includeWebSearch,
 	includeNews bool,
+	externalPrompt string,
 
 ) []string {
 	config.LoadEnv()
@@ -40,7 +41,7 @@ func GenerateInterviewQuestions(
 		"IncludeNews":      includeNews,
 		"Year":             time.Now().Year(),
 	}
-	prompt, promptErr := utils.ParsePromptTemplate("prompts/avalai_prompt_template.txt", token)
+	prompt, promptErr := utils.ParsePromptTemplate("prompts/avalai_prompt_template.txt", token, externalPrompt)
 	if promptErr != nil {
 		return []string{"Error: Unable to parse prompt"}
 	}
